@@ -1,4 +1,4 @@
-from ..Qt import QtCore, QtGui, QtWidgets, QT_LIB, QtVersionInfo
+from ..Qt import QtCore, QtGui, QtWidgets, QtOpenGL, QT_LIB, QtVersionInfo
 
 import importlib
 import math
@@ -14,10 +14,8 @@ from ..Qt import OpenGLHelpers
 from .GraphicsObject import GraphicsObject
 
 if QtVersionInfo[0] >= 6:
-    QtOpenGL = importlib.import_module(f"{QT_LIB}.QtOpenGL")
     QtOpenGLWidgets = importlib.import_module(f"{QT_LIB}.QtOpenGLWidgets")
 else:
-    QtOpenGL = QtGui
     QtOpenGLWidgets = QtWidgets
 
 __all__ = ['PlotCurveItem']

@@ -8,13 +8,11 @@ import numpy as np
 from .. import Vector
 from .. import functions as fn
 from .. import getConfigOption
-from ..Qt import QtCore, QtGui, QtWidgets, QT_LIB, QtVersionInfo
+from ..Qt import QtCore, QtGui, QtWidgets, QtOpenGL, QT_LIB, QtVersionInfo
 
 if QtVersionInfo[0] >= 6:
-    QtOpenGL = importlib.import_module(f"{QT_LIB}.QtOpenGL")
     QtOpenGLWidgets = importlib.import_module(f"{QT_LIB}.QtOpenGLWidgets")
 else:
-    QtOpenGL = QtGui
     QtOpenGLWidgets = QtWidgets
 
 class GLViewMixin:
