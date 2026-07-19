@@ -1,6 +1,5 @@
-from ..Qt import QtCore, QtGui, QtWidgets, QT_LIB, QtVersionInfo
+from ..Qt import QtCore, QtGui, QtOpenGL
 
-import importlib
 import math
 import warnings
 
@@ -12,13 +11,6 @@ from .. import getConfigOption
 from ..Qt import OpenGLConstants as GLC
 from ..Qt import OpenGLHelpers
 from .GraphicsObject import GraphicsObject
-
-if QtVersionInfo[0] >= 6:
-    QtOpenGL = importlib.import_module(f"{QT_LIB}.QtOpenGL")
-    QtOpenGLWidgets = importlib.import_module(f"{QT_LIB}.QtOpenGLWidgets")
-else:
-    QtOpenGL = QtGui
-    QtOpenGLWidgets = QtWidgets
 
 __all__ = ['PlotCurveItem']
 
@@ -877,8 +869,9 @@ class PlotCurveItem(GraphicsObject):
         #   * With OpenGL split in rather big chunks
         #     Note: when OpenGL mode is enabled, we should normally be using the
         #     'paintGL' method, and should not even reach here.
+        #     However, some oddball unsupported paint configurations may result in 'paintGL' not being used.
         # Values were found using 'PlotSpeedTest.py' example, see #2257.
-        chunksize = 50 if not isinstance(widget, QtOpenGLWidgets.QOpenGLWidget) else 5000
+        chunksize = 150 if not isinstance(widget, OpenGLHelpers.GraphicsViewGLWidget) else 5000
 
         connect_kind = self.opts['connect']
         if isinstance(connect_kind, np.ndarray):

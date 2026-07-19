@@ -1,18 +1,12 @@
 import enum
-import importlib
 
 from OpenGL import GL
 import numpy as np
 
-from ...Qt import QtGui, QT_LIB, QtVersionInfo
+from ...Qt import QtGui, QtOpenGL
 from .. import shaders
 from ..GLGraphicsItem import GLGraphicsItem
 from ..MeshData import MeshData
-
-if QtVersionInfo[0] >= 6:
-    QtOpenGL = importlib.import_module(f"{QT_LIB}.QtOpenGL")
-else:
-    QtOpenGL = QtGui
 
 __all__ = ['GLMeshItem']
 

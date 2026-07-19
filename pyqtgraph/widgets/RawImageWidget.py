@@ -11,15 +11,13 @@ import numpy as np
 from .. import functions as fn
 from .. import functions_qimage
 from .. import getConfigOption, getCupy
-from ..Qt import QtCore, QtGui, QtWidgets, QT_LIB, QtVersionInfo
+from ..Qt import QtCore, QtGui, QtWidgets, QtOpenGL, QT_LIB, QtVersionInfo
 from ..Qt import OpenGLConstants as GLC
 from ..Qt import OpenGLHelpers
 
 if QtVersionInfo[0] >= 6:
-    QtOpenGL = importlib.import_module(f'{QT_LIB}.QtOpenGL')
     QtOpenGLWidgets = importlib.import_module(f"{QT_LIB}.QtOpenGLWidgets")
 else:
-    QtOpenGL = QtGui
     QtOpenGLWidgets = QtWidgets
 
 # importing cuda python is fast
